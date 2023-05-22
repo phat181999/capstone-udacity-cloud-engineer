@@ -61,7 +61,7 @@ commands:
         command: |
           SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.Workflow_ID >>)
           # Logic for reverting the database state
-          if (( $SUCCESS == 1 ));
+          if [[ "${SUCCESS}" == "1" ]];
           then
             cd ~/project/backend
             npm install
@@ -417,7 +417,6 @@ jobs:
               aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
               aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
               aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
-
             fi
 
   add-prometheus-node-exporter:
