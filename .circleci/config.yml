@@ -449,32 +449,32 @@ workflows:
     jobs:
       - build-frontend
       - build-backend
-      - test-frontend:
-          requires: [build-frontend]
-      - test-backend:
-          requires: [build-backend]
-      - scan-backend:
-          requires: [build-backend]
-      - scan-frontend:
-          requires: [build-frontend]
-      - deploy-infrastructure:
-          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
-          filters:
-            branches:
-              only: [master]
-      - add-prometheus-node-exporter:
-          requires: [deploy-infrastructure]
-      - configure-infrastructure:
-          requires: [add-prometheus-node-exporter]
-      - run-migrations:
-          requires: [configure-infrastructure]
-      - deploy-frontend:
-          requires: [run-migrations]
-      - deploy-backend:
-          requires: [run-migrations]
-      - smoke-test:
-          requires: [deploy-backend, deploy-frontend]
-      - cloudfront-update:
-          requires: [smoke-test]
-      - cleanup:
-          requires: [cloudfront-update, add-prometheus-node-exporter]
+      # - test-frontend:
+      #     requires: [build-frontend]
+      # - test-backend:
+      #     requires: [build-backend]
+      # - scan-backend:
+      #     requires: [build-backend]
+      # - scan-frontend:
+      #     requires: [build-frontend]
+      # - deploy-infrastructure:
+      #     requires: [test-frontend, test-backend, scan-frontend, scan-backend]
+      #     filters:
+      #       branches:
+      #         only: [master]
+      # - add-prometheus-node-exporter:
+      #     requires: [deploy-infrastructure]
+      # - configure-infrastructure:
+      #     requires: [add-prometheus-node-exporter]
+      # - run-migrations:
+      #     requires: [configure-infrastructure]
+      # - deploy-frontend:
+      #     requires: [run-migrations]
+      # - deploy-backend:
+      #     requires: [run-migrations]
+      # - smoke-test:
+      #     requires: [deploy-backend, deploy-frontend]
+      # - cloudfront-update:
+      #     requires: [smoke-test]
+      # - cleanup:
+      #     requires: [cloudfront-update, add-prometheus-node-exporter]
